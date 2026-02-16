@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Nexum.Api")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+53955f735dae07b62c920f80da329eb27193b6b0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3176a56b27d91c72c46bb59ba304f3189c87404a")]
 [assembly: System.Reflection.AssemblyProductAttribute("Nexum.Api")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Nexum.Api")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

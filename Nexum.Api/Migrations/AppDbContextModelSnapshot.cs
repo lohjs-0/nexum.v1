@@ -2,21 +2,18 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using Nexum.Api.Infrastructure.Data;
+using Nexum.Api.Data;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
 namespace Nexum.Api.Migrations
 {
-    [DbContext(typeof(NexumDbContext))]
-    [Migration("20260211211235_InitialCreate")]
-    partial class InitialCreate
+    [DbContext(typeof(AppDbContext))]
+    partial class AppDbContextModelSnapshot : ModelSnapshot
     {
-        /// <inheritdoc />
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -25,7 +22,7 @@ namespace Nexum.Api.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("Nexum.Api.Domain.Entities.Contract", b =>
+            modelBuilder.Entity("Nexum.Api.Models.Contract", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -34,6 +31,9 @@ namespace Nexum.Api.Migrations
                     b.Property<string>("ClientName")
                         .IsRequired()
                         .HasColumnType("text");
+
+                    b.Property<int>("ContractNumber")
+                        .HasColumnType("integer");
 
                     b.Property<DateTime>("EndDate")
                         .HasColumnType("timestamp with time zone");
@@ -45,9 +45,12 @@ namespace Nexum.Api.Migrations
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<decimal>("Value")
-                        .HasColumnType("numeric");
+                        .HasColumnType("numeric(18,2)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ContractNumber")
+                        .IsUnique();
 
                     b.ToTable("Contracts");
                 });

@@ -1,14 +1,28 @@
 using Microsoft.EntityFrameworkCore;
-using Nexum.Api.Domain.Entities;
+using Nexum.Api.Models;
 
-namespace Nexum.Api.Infrastructure.Data;
-
-public class NexumDbContext : DbContext
+namespace Nexum.Api.Data
 {
-    public NexumDbContext(DbContextOptions<NexumDbContext> options)
-        : base(options)
+    public class AppDbContext : DbContext
     {
-    }
+        public AppDbContext(DbContextOptions<AppDbContext> options)
+            : base(options)
+        {
+        }
 
-    public DbSet<Contract> Contracts => Set<Contract>();
+        public DbSet<Contract> Contracts { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Contract>()
+                .Property(c => c.Value)
+                .HasColumnType("numeric(18,2)");
+
+            modelBuilder.Entity<Contract>()
+                .HasIndex(c => c.ContractNumber)
+                .IsUnique();
+
+            base.OnModelCreating(modelBuilder);
+        }
+    }
 }

@@ -1,4 +1,4 @@
-namespace Nexum.Api.Domain.Entities;
+namespace Nexum.Api.Entities;
 
 public class Contract
 {
@@ -7,5 +7,5 @@ public class Contract
     public DateTime StartDate { get; set; }
     public DateTime EndDate { get; set; }
     public decimal Value { get; set; }
-    public bool IsActive { get; set; }
+    public bool IsActive { get; set; } = true;
 }

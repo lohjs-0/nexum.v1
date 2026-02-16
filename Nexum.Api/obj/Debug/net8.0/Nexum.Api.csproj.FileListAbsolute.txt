@@ -90,6 +90,7 @@ C:\Users\Usuario\OneDrive\Documentos\nexum.v1\Nexum.Api\obj\Debug\net8.0\Nexum.A
 C:\Users\Usuario\OneDrive\Documentos\nexum.v1\Nexum.Api\obj\Debug\net8.0\Nexum.Api.csproj.CoreCompileInputs.cache
 C:\Users\Usuario\OneDrive\Documentos\nexum.v1\Nexum.Api\obj\Debug\net8.0\Nexum.Api.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\Usuario\OneDrive\Documentos\nexum.v1\Nexum.Api\obj\Debug\net8.0\Nexum.Api.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Usuario\OneDrive\Documentos\nexum.v1\Nexum.Api\obj\Debug\net8.0\Nexum.Api.sourcelink.json
 C:\Users\Usuario\OneDrive\Documentos\nexum.v1\Nexum.Api\obj\Debug\net8.0\rjimswa.dswa.cache.json
 C:\Users\Usuario\OneDrive\Documentos\nexum.v1\Nexum.Api\obj\Debug\net8.0\rjsmrazor.dswa.cache.json
 C:\Users\Usuario\OneDrive\Documentos\nexum.v1\Nexum.Api\obj\Debug\net8.0\rjsmcshtml.dswa.cache.json
@@ -105,9 +106,3 @@ C:\Users\Usuario\OneDrive\Documentos\nexum.v1\Nexum.Api\obj\Debug\net8.0\refint\
 C:\Users\Usuario\OneDrive\Documentos\nexum.v1\Nexum.Api\obj\Debug\net8.0\Nexum.Api.pdb
 C:\Users\Usuario\OneDrive\Documentos\nexum.v1\Nexum.Api\obj\Debug\net8.0\Nexum.Api.genruntimeconfig.cache
 C:\Users\Usuario\OneDrive\Documentos\nexum.v1\Nexum.Api\obj\Debug\net8.0\ref\Nexum.Api.dll
-C:\Users\Usuario\OneDrive\Documentos\nexum.v1\Nexum.Api\bin\Debug\net8.0\nexum-frontend\package-lock.json
-C:\Users\Usuario\OneDrive\Documentos\nexum.v1\Nexum.Api\bin\Debug\net8.0\nexum-frontend\package.json
-C:\Users\Usuario\OneDrive\Documentos\nexum.v1\Nexum.Api\bin\Debug\net8.0\nexum-frontend\tsconfig.app.json
-C:\Users\Usuario\OneDrive\Documentos\nexum.v1\Nexum.Api\bin\Debug\net8.0\nexum-frontend\tsconfig.json
-C:\Users\Usuario\OneDrive\Documentos\nexum.v1\Nexum.Api\bin\Debug\net8.0\nexum-frontend\tsconfig.node.json
-C:\Users\Usuario\OneDrive\Documentos\nexum.v1\Nexum.Api\obj\Debug\net8.0\Nexum.Api.sourcelink.json

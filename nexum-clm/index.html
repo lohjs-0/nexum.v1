@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nexum CLM | Gestão de Contratos</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="app">
+
+        <!-- SIDEBAR -->
+        <aside class="sidebar">
+            <div class="logo">
+                <h1>Nexum</h1>
+                <p>Contract Lifecycle</p>
+            </div>
+
+            <nav class="nav">
+                <button class="nav-item active" data-page="dashboard">Dashboard</button>
+                <button class="nav-item" data-page="contracts">Contratos</button>
+                <button class="nav-item" data-page="clients">Clientes</button>
+                <button class="nav-item" data-page="reports">Relatórios</button>
+            </nav>
+        </aside>
+
+        <!-- MAIN -->
+        <div class="main-container">
+
+            <!-- TOPBAR -->
+            <header class="topbar">
+                <div class="search-box">
+                    <input type="text" placeholder="Pesquisar contratos..." id="searchInput">
+                </div>
+
+                <div class="user-profile">
+                    <div class="avatar">AD</div>
+                    <div class="user-info">
+                        <p class="user-name">Admin</p>
+                        <p class="user-role">Administrador</p>
+                    </div>
+                </div>
+            </header>
+
+            <!-- CONTENT -->
+            <main class="content">
+
+                <!-- DASHBOARD -->
+                <div id="dashboard-page" class="page active">
+
+                    <div class="page-header">
+                        <div>
+                            <h1>Dashboard</h1>
+                            <p>Resumo geral dos contratos.</p>
+                        </div>
+                        <button id="btn-new-dashboard" class="btn btn-primary">+ Novo Contrato</button>
+                    </div>
+
+                    <div class="metrics-grid">
+
+                        <div class="metric-card">
+                            <h3>Total de Contratos</h3>
+                            <p class="metric-value" id="total-contracts">0</p>
+                        </div>
+
+                        <div class="metric-card">
+                            <h3>Contratos Ativos</h3>
+                            <p class="metric-value" id="active-contracts">0</p>
+                        </div>
+
+                    </div>
+
+                    <div class="section">
+                        <div class="section-header">
+                            <h2>Contratos Recentes</h2>
+                        </div>
+
+                        <div class="table-container">
+                            <table class="contracts-table">
+                                <thead>
+                                    <tr>
+                                        <th>Título</th>
+                                        <th>Status</th>
+                                        <th>Ações</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="contracts-table-body">
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- CONTRACTS PAGE -->
+                <div id="contracts-page" class="page">
+
+                    <div class="page-header">
+                        <div>
+                            <h1>Contratos</h1>
+                            <p>Lista completa de contratos.</p>
+                        </div>
+                        <button id="btn-new-contracts" class="btn btn-primary">+ Novo Contrato</button>
+                    </div>
+
+                    <div class="section">
+                        <div class="table-container">
+                            <table class="contracts-table">
+                                <thead>
+                                    <tr>
+                                        <th>Título</th>
+                                        <th>Status</th>
+                                        <th>Ações</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="contracts-page-table-body">
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- CLIENTS -->
+                <div id="clients-page" class="page">
+                    <h1>Clientes</h1>
+                    <p>Em desenvolvimento...</p>
+                </div>
+
+                <!-- REPORTS -->
+                <div id="reports-page" class="page">
+                    <h1>Relatórios</h1>
+                    <p>Em desenvolvimento...</p>
+                </div>
+
+            </main>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+
+    <script>
+        const API_URL = "http://localhost:5234/api/contracts";
+
+        async function loadContracts() {
+            const response = await fetch(API_URL);
+            const contracts = await response.json();
+
+            const dashboardTable = document.getElementById("contracts-table-body");
+            const contractsPageTable = document.getElementById("contracts-page-table-body");
+
+            dashboardTable.innerHTML = "";
+            contractsPageTable.innerHTML = "";
+
+            let activeCount = 0;
+
+            contracts.forEach(contract => {
+
+                if (contract.isActive) activeCount++;
+
+                const row = `
+                <tr>
+                    <td>#${contract.contractNumber} - ${contract.clientName}</td>
+                    <td>${contract.isActive ? "Ativo" : "Inativo"}</td>
+                    <td>-</td>
+                </tr>
+            `;
+
+                dashboardTable.innerHTML += row;
+                contractsPageTable.innerHTML += row;
+            });
+
+            document.getElementById("total-contracts").textContent = contracts.length;
+            document.getElementById("active-contracts").textContent = activeCount;
+        }
+
+        async function createContract() {
+            const newContract = {
+                clientName: "Novo Cliente " + Math.floor(Math.random() * 1000),
+                startDate: new Date().toISOString(),
+                endDate: new Date(new Date().setFullYear(new Date().getFullYear() + 1)).toISOString(),
+                value: 10000.00,
+                isActive: true
+            };
+
+            await fetch(API_URL, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(newContract)
+            });
+
+            loadContracts();
+        }
+
+        document.getElementById("btn-new-dashboard").addEventListener("click", createContract);
+        document.getElementById("btn-new-contracts").addEventListener("click", createContract);
+
+        loadContracts();
+
+        // Navegação simples SPA
+        const navItems = document.querySelectorAll(".nav-item");
+        const pages = document.querySelectorAll(".page");
+
+        navItems.forEach(button => {
+            button.addEventListener("click", () => {
+                navItems.forEach(b => b.classList.remove("active"));
+                pages.forEach(p => p.classList.remove("active"));
+
+                button.classList.add("active");
+
+                const page = button.getAttribute("data-page");
+                document.getElementById(page + "-page").classList.add("active");
+            });
+        });
+    </script>
+
+</body>
+
+</html>
